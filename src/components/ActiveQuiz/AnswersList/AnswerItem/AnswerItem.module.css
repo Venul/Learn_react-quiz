@@ -11,10 +11,10 @@
   transition: background .3s ease-in-out;
 }
 
-.AnswerItem.succes {
+.AnswerItem.success {
   background: rgba(161, 240, 69, .7);
 }
 
-.AnswerItem.succes {
+.AnswerItem.error {
   background: rgba(240, 87, 108, .7);
 }

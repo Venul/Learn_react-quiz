@@ -15,8 +15,7 @@ const AnswerItem = props => {
     >
       { props.answer.text }
     </li>
-    )
-  }
-
+  )
+}
 
 export default AnswerItem

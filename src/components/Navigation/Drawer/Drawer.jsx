@@ -4,9 +4,9 @@ import classes from './Drawer.module.scss'
 import {NavLink} from 'react-router-dom'
 
 const links = [
-  {to: '/', label: 'Список', exact: true},
-  {to: '/auth', label: 'Авторизация', exact: false},
-  {to: '/quiz-creator', label: 'Создать тест', exact: false}
+  {to: '/', label: 'Список'},
+  {to: '/auth', label: 'Авторизация'},
+  {to: '/quiz-creator', label: 'Создать тест'}
 ]
 
 class Drawer extends Component {
@@ -22,7 +22,7 @@ class Drawer extends Component {
             <NavLink 
                 to={link.to}
                 exact={link.exact}
-                activeClassName={classes.active}
+                className={classes.active}
                 onClick={this.clickHandler}
             >
               {link.label}

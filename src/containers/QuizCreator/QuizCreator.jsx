@@ -35,6 +35,7 @@ function createFormControls() {
 export default class QuizCreator extends Component {
   state = {
     quiz: [],
+    isFormValid: false,
     rightAnswerId: 1,
     formControls: createFormControls()
   }
@@ -46,10 +47,37 @@ export default class QuizCreator extends Component {
 
   addQuestionHandler = event => {
     event.preventDefault()
+
+    const quiz = this.state.quiz.concat()
+    const index = quiz.length + 1
+
+    const {question, option1, option2, option3, option4, rightAnswerId} = this.state.formControls
+
+    const questionItem = {
+      question: question.value,
+      id: index,
+      rightAnswerId: rightAnswerId,
+      answers: [
+        {text: option1.value, id: option1.id},
+        {text: option2.value, id: option2.id},
+        {text: option3.value, id: option3.id},
+        {text: option4.value, id: option4.id}
+      ]
+    }
+
+    quiz.push(questionItem)
+    this.setState({
+      quiz,
+      isFormValid: false,
+      rightAnswerId: 1,
+      formControls: createFormControls()
+    })
   }
 
-  createQuizHandler = () => {
-
+  createQuizHandler = event => {
+    event.preventDefault()
+    console.log(this.state.quiz)
+    // TODO: server logic
   }
 
   onChangeHandler = (value, controlName) => {
@@ -58,7 +86,7 @@ export default class QuizCreator extends Component {
 
     control.touched = true
     control.value = value
-    control.valid = validate (control.value, control.validation)
+    control.valid = validate(control.value, control.validation)
 
     formControls[controlName] = control
 
@@ -132,8 +160,8 @@ export default class QuizCreator extends Component {
               onClick={this.createQuizHandler}
               disabled={this.state.quiz.length === 0}
             >
-              Создать тест
-            </Button>
+            Создать тест
+          </Button>
           </form>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import classes from './Auth.module.scss'
 import Button from '../../components/UI/Button/Button'
 import Input from '../../components/UI/Input/Input'
+import axios from 'axios'
 
 export default class Auth extends Component {
   state = {
@@ -35,11 +36,31 @@ export default class Auth extends Component {
   }
 
   loginHandler = () => {
-
+    const authData = {
+      email: this.state.formControls.email.value,
+      password: this.state.formControls.password.value,
+      returnSecureToken: true
+    }
+    try {
+      const response = axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAhMitVOCbc8lengcjFW7tbWI9t9_pswAw', authData)
+      console.log(response.data)
+    } catch(e) {
+      console.log(e)
+    }
   }
 
-  registerHandler = () => {
-    
+  registerHandler = async () => {
+    const authData = {
+      email: this.state.formControls.email.value,
+      password: this.state.formControls.password.value,
+      returnSecureToken: true
+    }
+    try {
+      const response = axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAhMitVOCbc8lengcjFW7tbWI9t9_pswAw', authData)
+      console.log(response.data)
+    } catch(e) {
+      console.log(e)
+    }
   }
 
   validateEmail(email) {
